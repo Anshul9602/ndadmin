@@ -43,8 +43,9 @@ $routes->group('admin', function($routes) {
 
   // Jobs routes
   
-  $routes->get('jobs/(:segment)', 'Admin\Jobs\Jobs::listAllJobs/$1');
-  $routes->get('jobs/view/getbyid/(:num)', 'Admin\Jobs\Jobs::listAllJobs_getByid/$1');
+  $routes->get('roles/(:segment)', 'Admin\Role\Role::listAllRoles/$1');
+  $routes->get('role/role_form/(:segment)', 'Admin\Role\Role::listAllRole_Form/$1');
+  $routes->post('role/role_form/(:segment)', 'Admin\Role\Role::listRole_save/$1');
   $routes->post('jobs/view/delete/(:num)', 'Admin\Jobs\Jobs::listJob_delete/$1');
   $routes->post('jobs/job/save', 'Admin\Jobs\Jobs::listJob_save');
   $routes->post('jobs/view/status/(:num)', 'Admin\Jobs\Jobs::listJob_status/$1');

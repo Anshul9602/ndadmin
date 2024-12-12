@@ -68,16 +68,16 @@
     <div class="row page-titles mx-0">
       <div class="col-sm-6">
         <div class="welcome-text">
-          <h4>Sheets List</h4>
+          <h4>Composite Products List</h4>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Catalog</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Sheets List</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Composite Products List</a></li>
           </ol>
         </div>
       </div>
       <div class="col-sm-6 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <a href="<?php echo base_url(
-                    'admin/category/unit_product_form/' . $token
+                    'catalog/composite_product_form'
                   ); ?>">
           <button class="btn btn-primary btn-rounded">
             <li class="fa fa-plus"></li>
@@ -118,12 +118,11 @@
                         <label class="custom-control-label" for="checkAll"></label>
                       </div>
                     </th>
-                    <th>Cover Image</th>
+                    <th>Product Image</th>
                     <th class="text-center">Barcode</th>
-                    <th>Sheet Name</th>
+                    <th>Product Name</th>
                     <th>Category</th>
-                    <th>Code</th>
-
+                    <th>Model</th>
                     <th>Status</th>
                     <th> Qty</th>
                     <th>Action</th>
@@ -182,30 +181,5 @@
   </div>
 
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Remove the 'active' class from the 'des-menu' item
-    const desMenu = document.getElementById("des-menu");
-    const des = document.getElementById("dashboard");
-    if (desMenu) {
-        desMenu.classList.remove("active");
-    }
-    if (des) {
-        des.classList.remove("show");
-        des.classList.remove("active");
-    }
 
-    // Add the 'active' class to the 'cat-menu' item
-    const catMenu = document.getElementById("cat-menu");
-    const cat = document.getElementById("forms");
-    if (catMenu) {
-        catMenu.classList.add("active");
-    }
-    if (cat) {
-        cat.classList.add("show");
-        cat.classList.add("active");
-    }
-});
-</script>
-</div>
 <?= $this->include('admin/common/footer') ?>

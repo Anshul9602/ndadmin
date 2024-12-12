@@ -68,17 +68,15 @@
     <div class="row page-titles mx-0">
       <div class="col-sm-6">
         <div class="welcome-text">
-          <h4>Sheets List</h4>
+          <h4>Alerts</h4>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Catalog</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Sheets List</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Alerts</a></li>
           </ol>
         </div>
       </div>
       <div class="col-sm-6 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-        <a href="<?php echo base_url(
-                    'admin/category/unit_product_form/' . $token
-                  ); ?>">
+        <a href="<?php echo base_url('catalog/alert_form'); ?>">
           <button class="btn btn-primary btn-rounded">
             <li class="fa fa-plus"></li>
           </button>
@@ -118,18 +116,18 @@
                         <label class="custom-control-label" for="checkAll"></label>
                       </div>
                     </th>
-                    <th>Cover Image</th>
-                    <th class="text-center">Barcode</th>
-                    <th>Sheet Name</th>
-                    <th>Category</th>
-                    <th>Code</th>
-
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Mode</th>
+                    <th>Frequancy</th>
                     <th>Status</th>
-                    <th> Qty</th>
+                    <th> Date added</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
+
+
                   <tr>
                     <td>
                       <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
@@ -138,27 +136,19 @@
                       </div>
                     </td>
                     <td>
-                      <img width="100" class="img-thumbnail" src="<?php echo base_url(
-                                                                    'assets/images/card/2.png'
-                                                                  ); ?>" alt="" />
-                    </td>
-                    <td class="text-center">
-                      <img width="180" style="margin:auto" class="img-fluid" src="<?php echo base_url(
-                                                                                    'assets/images/barcode.jpeg'
-                                                                                  ); ?>" alt="" />
+                      Low Inventory Alert
                     </td>
                     <td>
-
-                      Eletric Pumps</td>
-                    <td>Water Pump</td>
-                    <td>KSP0198</td>
+                      Send alerts to purchase team when invenory is low</td>
+                    <td>App Notificion<br />Email</td>
+                    <td>Once Per Day</td>
                     <td>
                       <label class="switch">
                         <input type="checkbox">
                         <span class="slider round"></span>
                       </label>
                     </td>
-                    <td><a href="javascript:void(0);"><strong>212</a></strong></td>
+                    <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
                     <td>
                       <div class="d-flex">
                         <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
@@ -166,10 +156,6 @@
                       </div>
                     </td>
                   </tr>
-
-
-
-
 
                 </tbody>
               </table>
@@ -182,30 +168,6 @@
   </div>
 
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Remove the 'active' class from the 'des-menu' item
-    const desMenu = document.getElementById("des-menu");
-    const des = document.getElementById("dashboard");
-    if (desMenu) {
-        desMenu.classList.remove("active");
-    }
-    if (des) {
-        des.classList.remove("show");
-        des.classList.remove("active");
-    }
 
-    // Add the 'active' class to the 'cat-menu' item
-    const catMenu = document.getElementById("cat-menu");
-    const cat = document.getElementById("forms");
-    if (catMenu) {
-        catMenu.classList.add("active");
-    }
-    if (cat) {
-        cat.classList.add("show");
-        cat.classList.add("active");
-    }
-});
-</script>
 </div>
 <?= $this->include('admin/common/footer') ?>

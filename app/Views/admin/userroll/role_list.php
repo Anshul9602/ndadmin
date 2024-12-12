@@ -68,15 +68,15 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6">
                 <div class="welcome-text">
-                    <h4>Categories</h4>
+                    <h4>Roles</h4>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Catalog</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Categories</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Users</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Roles</a></li>
                     </ol>
                 </div>
             </div>
             <div class="col-sm-6 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-                <a href="<?php echo base_url('admin/category/category_form/' . $token); ?>">
+                <a href="<?php echo base_url('admin/role/role_form/' . $token); ?>">
                     <button class="btn btn-primary btn-rounded">
                         <li class="fa fa-plus"></li>
                     </button>
@@ -618,8 +618,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Add the 'active' class to the 'cat-menu' item
-    const catMenu = document.getElementById("cat-menu");
-    const cat = document.getElementById("forms");
+    const catMenu = document.getElementById("user-menu");
+    const cat = document.getElementById("apps");
     if (catMenu) {
         catMenu.classList.add("active");
     }

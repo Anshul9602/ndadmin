@@ -14,7 +14,7 @@
    </div>
    <div class="fixed-content-body dz-scroll" id="DZ_W_Fixed_Contant">
       <div class="tab-content" id="menu">
-         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
+         <div class="tab-pane fade show " id="dashboard" role="tabpanel">
             <ul class="metismenu tab-nav-menu">
                <li class="nav-label">DASHBOARD</li>
                <li>
@@ -56,8 +56,8 @@
             </ul>
          </div>
          <div class="tab-pane fade" id="apps">
-            <ul class="metismenu tab-nav-menu">
-               <li class="nav-label">Users & Permissions</li>
+            <ul class="metismenu tab-nav-menu ">
+               <li class="nav-label active">Users & Permissions</li>
                <li>
                   <a class="has-arrow" href="<?php echo base_url('spreadsheets');?>" aria-expanded="false">
                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">

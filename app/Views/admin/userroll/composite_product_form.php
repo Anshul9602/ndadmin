@@ -1,5 +1,5 @@
-
 <?= $this->include('admin/common/header') ?>
+
 <div class="content-body">
    <div class="container-fluid">
       <div class="row page-titles mx-0">
@@ -14,9 +14,7 @@
             </div>
          </div>
          <div class="col-sm-6 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-            <a href="<?php echo base_url(
-                    'admin/category/unit_product_form/' . $token
-                  ); ?>">
+            <a href="<?php echo base_url('catalog/category_form'); ?>">
             <button class="btn btn-primary btn-rounded">
             Save
             </button>
@@ -266,6 +264,61 @@
                                  </select>
                               </div>
                            </div>
+                           <div class="row">
+                              <div class="col-sm-12">
+                                 <br />
+                                 <h4>Composition</h4>
+                                 <hr />
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-sm-12">
+                              <div class="table-responsive">
+                              <table id="product-attribute" class="table table-bordered table-hover">
+                                 <thead>
+                                    <tr>
+                                       <td class="text-start">Product Name</td>
+                                       <td class="text-start">Quantity</td>
+                                       <td></td>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr id="attribute-row-0">
+                                       <td class="text-start">
+                                          <input type="text" name="product_attribute[0][name]" value="" placeholder="Product Name" id="input-attribute-0" list="list-attribute-0" class="form-control">    <input type="hidden" name="product_attribute[0][attribute_id]" value="" id="input-attribute-id-0">    
+                                          <datalist id="list-attribute-0"></datalist>
+                                       </td>
+                                       <td class="text-start">
+                                          <div class="input-group">
+                                          <input type="text" name="product_attribute[0][name]" value="" placeholder="Qty" id="input-attribute-0" list="list-attribute-0" class="form-control">    <input type="hidden" name="product_attribute[0][attribute_id]" value="" id="input-attribute-id-0">    
+                                       </div>
+                                       </td>
+                                       <td class="text-end"><button type="button" onclick="$('#attribute-row-0').remove();" data-bs-toggle="tooltip" title="" class="btn btn-danger" data-bs-original-title="Remove" aria-label="Remove"><i class="fa fa-minus-circle"></i></button></td>
+                                    </tr>
+                                    <tr id="attribute-row-0">
+                                       <td class="text-start">
+                                          <input type="text" name="product_attribute[0][name]" value="" placeholder="Product Name" id="input-attribute-0" list="list-attribute-0" class="form-control">    <input type="hidden" name="product_attribute[0][attribute_id]" value="" id="input-attribute-id-0">    
+                                          <datalist id="list-attribute-0"></datalist>
+                                       </td>
+                                       <td class="text-start">
+                                          <div class="input-group">
+                                          <input type="text" name="product_attribute[0][name]" value="" placeholder="Qty" id="input-attribute-0" list="list-attribute-0" class="form-control">    <input type="hidden" name="product_attribute[0][attribute_id]" value="" id="input-attribute-id-0">    
+                                       </div>
+                                       </td>
+                                       <td class="text-end"><button type="button" onclick="$('#attribute-row-0').remove();" data-bs-toggle="tooltip" title="" class="btn btn-danger" data-bs-original-title="Remove" aria-label="Remove"><i class="fa fa-minus-circle"></i></button></td>
+                                    </tr>
+                                 </tbody>
+                                 <tfoot>
+                                    <tr>
+                                       <td colspan="2"></td>
+                                       <td class="text-end"><button type="button" id="button-attribute" data-bs-toggle="tooltip" title="" class="btn btn-primary" data-bs-original-title="Add Attribute" aria-label="Add Attribute"><i class="fa fa-plus-circle"></i></button></td>
+                                    </tr>
+                                 </tfoot>
+                              </table>
+                           </div>
+                              </div>
+                           </div>
+                        
                            <div class="row">
                               <div class="col-sm-12">
                                  <br />
@@ -692,30 +745,4 @@
       </div>
    </div>
 </div>
-</div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Remove the 'active' class from the 'des-menu' item
-    const desMenu = document.getElementById("des-menu");
-    const des = document.getElementById("dashboard");
-    if (desMenu) {
-        desMenu.classList.remove("active");
-    }
-    if (des) {
-        des.classList.remove("show");
-        des.classList.remove("active");
-    }
-
-    // Add the 'active' class to the 'cat-menu' item
-    const catMenu = document.getElementById("cat-menu");
-    const cat = document.getElementById("forms");
-    if (catMenu) {
-        catMenu.classList.add("active");
-    }
-    if (cat) {
-        cat.classList.add("show");
-        cat.classList.add("active");
-    }
-});
-</script>
 <?= $this->include('admin/common/footer') ?>

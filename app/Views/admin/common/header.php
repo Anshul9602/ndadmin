@@ -16,7 +16,7 @@
    </div>
    <div class="fixed-content-body dz-scroll" id="DZ_W_Fixed_Contant">
       <div class="tab-content" id="menu">
-         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
+         <div class="tab-pane fade show active" id="dashboard" role="tabpanel" >
             <ul class="metismenu tab-nav-menu">
                <li class="nav-label">DASHBOARD</li>
                <li>
@@ -73,7 +73,7 @@
                   </a>
                </li>
                <li>
-                  <a class="has-arrow" href="<?php echo base_url('admin/spreadsheets/' . $token);?>" aria-expanded="false">
+                  <a class="has-arrow" href="<?php echo base_url('admin/roles/' . $token);?>" aria-expanded="false">
                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                            <polygon points="0 0 24 0 24 24 0 24"/>
