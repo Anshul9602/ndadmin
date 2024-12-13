@@ -137,7 +137,7 @@
    
       </div>
       <div class="tab-pane chart-sidebar fade show active" role="tabpanel">
-         <div class="card">
+         <div class="card role-f">
             <div class="card-header align-items-start">
                <div>
                   <h6>Daily Sales</h6>

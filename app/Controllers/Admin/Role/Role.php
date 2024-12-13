@@ -66,6 +66,21 @@ class Role extends BaseController
 
         return view('admin/userroll/role_form', $data);
     }
+    public function listAllRole_Form_value($id)
+    {
+      
+         $data['token'] = session()->get('token');
+        $model = new RoleModel();
+        
+        $model = new RoleModel();
+        $role = $model->getRoleDataid($id); // Ensure the base URL does not have a trailing slash
+        $data['role'] = $role[0];
+        //      echo "<pre>"; print_r( $data['role']);
+        // echo "</pre>";
+        // die();
+
+        return view('admin/userroll/role_form1', $data);
+    }
     public function listAllRole_getByid($id)
     {
 
@@ -92,7 +107,7 @@ class Role extends BaseController
 
         $post = $model->deletedata($id);
 
-        return redirect()->to(base_url('admin/candidates/list_jobs' . session()->get('token')));
+        return redirect()->to(base_url('admin/roles/' . session()->get('token')));
     }
     
     public function listRole_status($id)
@@ -110,22 +125,38 @@ class Role extends BaseController
     {
 
         $data = $this->request->getPost();
+        $model = new RoleModel();
+      
 
-         
+
+         if($data['id']){
+           
+            $id = $data['id'];
+            $input = [
+                'id' => isset($data['id']) ? $data['id'] : '',
+                'name' => isset($data['name']) ? $data['name'] : '',
+                'permission' => isset($data['permission']) ? implode(',', $data['permission']) : '',
+                'status' => isset($data['status']) ? $data['status'] : ''
+            ];
+            $user = $model->update1($id,$input);
+         }else{
+          
+            $input = [
+                'name' => isset($data['name']) ? $data['name'] : '',
+                'permission' => isset($data['permission']) ? implode(',', $data['permission']) : '',
+                'status' => isset($data['status']) ? $data['status'] : ''
+            ];
+            $user = $model->save($input);
+         }
        
-        $input = [
-            'name' => isset($data['name']) ? $data['name'] : '',
-            'permission' => isset($data['permission']) ? implode(',', $data['permission']) : '',
-            'status' => isset($data['status']) ? $data['status'] : ''
-        ];
-
+       
 
         // echo "<pre>"; print_r($input); echo "</pre>";
         // die();
 
-        $model = new RoleModel();
+       
 
-        $user = $model->save($input);
+      
 
         if ($user === false) {
 
@@ -144,11 +175,12 @@ class Role extends BaseController
                 'role' => $role,
                 'token' => $segment
             ];
-            return view('admin/userroll/role_list', $data);
+            return redirect()->to(base_url('admin/roles/' . $segment));
             
         }
 
        
     }
+  
 
 }

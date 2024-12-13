@@ -45,6 +45,8 @@ $routes->group('admin', function($routes) {
   
   $routes->get('roles/(:segment)', 'Admin\Role\Role::listAllRoles/$1');
   $routes->get('role/role_form/(:segment)', 'Admin\Role\Role::listAllRole_Form/$1');
+  $routes->get('role/role_form_value/(:num)', 'Admin\Role\Role::listAllRole_Form_value/$1');
+  $routes->get('role/role_delete/(:num)', 'Admin\Role\Role::listRole_delete/$1');
   $routes->post('role/role_form/(:segment)', 'Admin\Role\Role::listRole_save/$1');
   $routes->post('jobs/view/delete/(:num)', 'Admin\Jobs\Jobs::listJob_delete/$1');
   $routes->post('jobs/job/save', 'Admin\Jobs\Jobs::listJob_save');

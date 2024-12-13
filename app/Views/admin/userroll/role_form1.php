@@ -49,26 +49,30 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="home1" role="tabpanel">
                                         <div class="row pt-2">
-                                        <input type="text" class="d-none" name="id" value="">
                                             <div class="col-sm-5 mt-3">
+                                                <input type="text" class="d-none" name="id" value="<?= $role->id ?>">
                                             <label for="workSelection"style="color:#000;">Name Of Role</label>
-                                                <input type="text" class="form-control" name="name" placeholder="Enter role">
+                                                <input type="text" class="form-control" name="name" value="<?= $role->name ?>" placeholder="Enter role">
                                             </div>
                                             <div class="col-sm-5 mt-3"id="persel">
                                                 <label for="workSelection"style="color:#000;">Select Permission:</label>
                                                 <br>
+                                                <?php
+// Assuming $role->permission is a string like "edit,delete"
+$selectedPermissions = explode(',', $role->permission); // Convert to an array
+?>
                                                 <select id="workSelection" name="permission[]" multiple style="width: 100%;">
-                                                    <option value="edit">Edit</option>
-                                                    <option value="delete">Delete</option>
-                                                    <option value="update">Update</option>
-                                                    <option value="view">View</option>
-                                                </select>
+    <option value="edit" <?= in_array('edit', $selectedPermissions) ? 'selected' : '' ?>>Edit</option>
+    <option value="delete" <?= in_array('delete', $selectedPermissions) ? 'selected' : '' ?>>Delete</option>
+    <option value="update" <?= in_array('update', $selectedPermissions) ? 'selected' : '' ?>>Update</option>
+    <option value="view" <?= in_array('view', $selectedPermissions) ? 'selected' : '' ?>>View</option>
+</select>
                                             </div>
                                             <div class="col-sm-5 mt-3">
                                             <label for="workSelection" style="color:#000;">Status</label>
                                                 <select class="form-control form-control-lg" name="status">
-                                                    <option value="1">Enable</option>
-                                                    <option value="0">Disable</option>
+                                                <option value="1" <?= $role->status == 1 ? 'selected' : '' ?>>Enable</option>
+                                                <option value="0" <?= $role->status == 0 ? 'selected' : '' ?>>Disable</option>
                                                 </select>
                                             </div>
                                         </div>

@@ -1,4 +1,13 @@
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+   .role-f{
+        display: none !important;
+    }
+</style>
 <?= $this->include('admin/common/header') ?>
+
 <div class="content-body">
     <style>
         /* The switch - the box around the slider */
@@ -152,8 +161,14 @@
                                                     </a></strong></td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                        <a href="<?php echo base_url('admin/role/role_form_value/'. $user->id ); ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                                        <a href="javascript:void(0);" 
+   class="btn btn-danger shadow btn-xs sharp" 
+   data-bs-toggle="modal" 
+   data-bs-target="#deleteModal" 
+   data-url="<?php echo base_url('admin/role/role_delete/' . $user->id); ?>">
+   <i class="fa fa-trash"></i>
+</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -196,8 +211,37 @@
     </div>
 
 </div>
-
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this role?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="#" id="confirmDeleteBtn" class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      // Ensure the script runs after the DOM is fully loaded
+      document.querySelectorAll('[data-bs-target="#deleteModal"]').forEach(button => {
+          button.addEventListener('click', function () {
+              // Get the URL from the button's data-url attribute
+              const url = this.getAttribute('data-url');
+              // Set the href of the confirmation button in the modal
+              document.getElementById('confirmDeleteBtn').setAttribute('href', url);
+          });
+      });
+  });
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Remove the 'active' class from the 'des-menu' item

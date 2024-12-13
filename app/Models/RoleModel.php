@@ -212,12 +212,13 @@ class RoleModel extends Model
 
         $name= $data['name'];
         $permission= $data['permission'];
+        $status= $data['status'];
         $date = new DateTime();
         $date = date_default_timezone_set('Asia/Kolkata');
         $date1 = date('Y-m-d H:i:s');
 
 
-        $sql = "UPDATE `role` SET name = '$name', permission = '$permission' WHERE id = $id";
+        $sql = "UPDATE `role` SET name = '$name', permission = '$permission',status ='$status' WHERE id = $id";
         // echo "<pre>"; print_r($sql);
         // echo "</pre>";
         $post = $this->db->query($sql);
