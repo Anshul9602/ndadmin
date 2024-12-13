@@ -36,10 +36,10 @@ class Role extends BaseController
             'token' => $segment
         ];
         $model = new RoleModel();
-        $data['Role'] = $model->getallJobData();
+        $data['roles'] = $model->getallRoleData();
 
 
-        // echo "<pre>"; print_r($post);
+        // echo "<pre>"; print_r( $data['Role']);
         // echo "</pre>";
         // die();
 
@@ -59,10 +59,6 @@ class Role extends BaseController
 
         $model = new RoleModel();
         
-
-
-
-
         $profile = new RoleModel();
         $baseUrl = rtrim(base_url(), '/'); // Ensure the base URL does not have a trailing slash
 
@@ -110,26 +106,17 @@ class Role extends BaseController
         return redirect()->to(base_url('admin/candidates/list_jobs' . session()->get('token')));
     }
 
-    public function listRole_save()
+    public function listRole_save($segment)
     {
 
         $data = $this->request->getPost();
+
+         
        
         $input = [
-            'hotelier_id' => isset($data['hotelier_id']) ? $data['hotelier_id'] : '',
-            'job_type' => isset($data['job_type']) ? $data['job_type'] : '',
-            'start_time' => isset($data['start_time']) ? $data['start_time'] : '',
-           
-            'end_time' => isset($data['end_time']) ? $data['end_time'] : '',
-            'job_title' => isset($data['job_title']) ? $data['job_title'] : '',
-            'job_description' => isset($data['job_description']) ? $data['job_description'] : '',
-            'department' => isset($data['department']) ? $data['department'] : '',
-            'sub_department' => isset($data['sub_department']) ? $data['sub_department'] : '',
-            'education' => isset($data['education']) ? $data['education'] : '',
-            'off_salery' => isset($data['off_salery']) ? $data['off_salery'] : '',
-            'number_employees' => isset($data['number_employees']) ? $data['number_employees'] : '',
-            'experience' => isset($data['experience']) ? $data['experience'] : '',
-            
+            'name' => isset($data['name']) ? $data['name'] : '',
+            'permission' => isset($data['permission']) ? implode(',', $data['permission']) : '',
+            'status' => isset($data['status']) ? $data['status'] : ''
         ];
 
 
@@ -146,7 +133,19 @@ class Role extends BaseController
                 return "Error: profile image not inserted successfully";
           
         } else {
-            return $this->response->setStatusCode(200)->setBody('user saved');
+            if (!$this->validateToken($segment)) {
+                return redirect()->to('/admin/login');
+            }
+    
+            $role = session()->get('role');
+    
+            // Pass the role to the view
+            $data = [
+                'role' => $role,
+                'token' => $segment
+            ];
+            return view('admin/userroll/role_list', $data);
+            
         }
 
        

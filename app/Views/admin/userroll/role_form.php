@@ -56,7 +56,7 @@
                                             <div class="col-sm-5 mt-3"id="persel">
                                                 <label for="workSelection"style="color:#000;">Select Permission:</label>
                                                 <br>
-                                                <select id="workSelection" name="work[]" multiple style="width: 100%;">
+                                                <select id="workSelection" name="permission[]" multiple style="width: 100%;">
                                                     <option value="edit">Edit</option>
                                                     <option value="delete">Delete</option>
                                                     <option value="update">Update</option>
@@ -66,8 +66,8 @@
                                             <div class="col-sm-5 mt-3">
                                             <label for="workSelection" style="color:#000;">Status</label>
                                                 <select class="form-control form-control-lg" name="status">
-                                                    <option value="Enable">Enable</option>
-                                                    <option value="Disable">Disable</option>
+                                                    <option value="1">Enable</option>
+                                                    <option value="0">Disable</option>
                                                 </select>
                                             </div>
                                         </div>

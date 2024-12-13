@@ -8,7 +8,7 @@ use \Datetime;
 
 class RoleModel extends Model
 {
-    protected $table = 'role_listings';
+    protected $table = 'role';
 
     protected $allowedFields = [
         'mobile_number',
@@ -46,11 +46,11 @@ class RoleModel extends Model
     
 
     /// get user information
-    public function getallJobData()
+    public function getallRoleData()
     {
-        $builder = $this->db->table('role_listings');
-        $builder->select('role_listings.*, hoteliers.name,hoteliers.address,hoteliers.city,hoteliers.state,hoteliers.pin_code,hoteliers.address');
-        $builder->join('hoteliers', 'hoteliers.user_id = role_listings.hotelier_id');
+        $builder = $this->db->table('role');
+        $builder->select('role.*');
+       
         
         $query = $builder->get();
     
@@ -63,29 +63,12 @@ class RoleModel extends Model
             return $result;
         }
     }
-    public function getJobDataid($id)
+    public function getRoleDataid($id)
     {
-        $builder = $this->db->table('role_listings');
-        $builder->select('role_listings.*, hoteliers.*');
-        $builder->join('hoteliers', 'hoteliers.user_id = role_listings.hotelier_id');
-        $builder->where('role_listings.id', $id);
-        $query = $builder->get();
+        $builder = $this->db->table('role');
+        $builder->select('role.*');
     
-        // Get the result
-        $result = $query->getResult();
-    
-        if (!$result) {
-            return null;
-        } else {
-            return $result;
-        }
-    }
-    public function getJobData($userId)
-    {
-        $builder = $this->db->table('role_listings');
-        $builder->select('role_listings.*, hoteliers.name,hoteliers.address,hoteliers.city,hoteliers.state,hoteliers.pin_code,hoteliers.address,');
-        $builder->join('hoteliers', 'hoteliers.user_id = role_listings.hotelier_id');
-        $builder->where('role_listings.hotelier_id', $userId);
+        $builder->where('role.id', $id);
         $query = $builder->get();
     
         // Get the result
@@ -100,8 +83,9 @@ class RoleModel extends Model
 
 
 
+
     
-    public function findJobById(string $id)
+    public function findRoleById(string $id)
     {
 
         $user = $this
@@ -110,7 +94,7 @@ class RoleModel extends Model
             ->first();
 
         if (!$user) {
-            throw new Exception('Job does not found');
+            throw new Exception('Role does not found');
         } else {
             return $user;
         }
@@ -120,7 +104,7 @@ class RoleModel extends Model
         $user_id = $id;
 
 
-        $result = $this->findJobById($user_id);
+        $result = $this->findRoleById($user_id);
 
         // print_r($result);
 
@@ -135,7 +119,7 @@ class RoleModel extends Model
             $date = date_default_timezone_set('Asia/Kolkata');
             $date1 = date("m-d-Y h:i A");
 
-            $sql = "UPDATE `role_listings` SET `status`='$new_status',`updated_at`='$date1' WHERE `id` = $user_id";
+            $sql = "UPDATE `role` SET `status`='$new_status' WHERE `id` = $user_id";
             $post = $this->db->query($sql);
 
             if (!$post) {
@@ -190,30 +174,15 @@ class RoleModel extends Model
             echo "1";
             return true;
         }
-        $hotelier_id = '104';
-        // $hotelier_id = $data['user_id'];
-        // $Hotel_name = $data['Hotel_name'];
-        $job_type = $data['job_type'];
-        $start_time = $data['start_time'];
-        $end_time = $data['end_time'];
-        $job_title = $data['job_title'];
-        $job_description = $data['job_description'];
-        // $location = $data['location'];
-        // $state = $data['state'];
-        // $city = $data['city'];
-        $department = $data['department'];
-        $sub_department = $data['sub_department'];
-        $education= $data['education'];
-        $off_salery = $data['off_salery'];
-        $experience = $data['experience'];
-        $number_employees = $data['number_employees'];
-        $status = '1';
-    
+       
+        $name= $data['name'];
+        $permission= $data['permission'];
+        $status =$data['status'];    
         $date = new DateTime();
         $date = date_default_timezone_set('Asia/Kolkata');
 
         $date1 = date('Y-m-d H:i:s');
-        $sql = "INSERT INTO `role_listings`( `hotelier_id`,`job_type`, `start_time`, `end_time`, `job_title`, `job_description`, `department`, `sub_department`, `education`, `off_salery`, `experience`, `number_employees`, `created_at`, `updated_at`, `status`) VALUES ('$hotelier_id','$job_type','$start_time','$end_time','$job_title','$job_description','$department','$sub_department','$education','$off_salery','$experience','$number_employees','$date1','$date1','$status')";
+        $sql = "INSERT INTO `role`( `id`,`name`, `permission`, `status`,`created_at`) VALUES (null,'$name','$permission','$status','$date1')";
 
 
         //     echo "<pre>"; print_r($sql); echo "</pre>";
@@ -241,48 +210,14 @@ class RoleModel extends Model
             return true;
         }
 
-     
-        // $Hotel_name = $data['Hotel_name'];
-        $job_type = $data['job_type'];
-        $start_time = $data['start_time'];
-        $end_time = $data['end_time'];
-        $job_title = $data['job_title'];
-        $job_description = $data['job_description'];
-        // $location = $data['location'];
-        // $state = $data['state'];
-        // $city = $data['city'];
-        $department = $data['department'];
-        $sub_department = $data['sub_department'];
-        $education= $data['education'];
-        $off_salery = $data['off_salery'];
-        $experience = $data['experience'];
-        $number_employees = $data['number_employees'];
-        $status = '1';
+        $name= $data['name'];
+        $permission= $data['permission'];
         $date = new DateTime();
         $date = date_default_timezone_set('Asia/Kolkata');
-
         $date1 = date('Y-m-d H:i:s');
 
 
-        $sql = "UPDATE `role_listings` SET  
-       
-       job_type= '$job_type',
-       
-       start_time= '$start_time',
-       end_time= '$end_time',
-       job_title= '$job_title',
-       job_description= '$job_description',
-       
-       department= '$department',
-       sub_department= '$sub_department',
-       education= '$education',
-       off_salery= '$off_salery',
-       experience= '$experience',
-       number_employees= '$number_employees',
-
-        updated_at = '$date1',
-        status = '$status'
-          WHERE id = $id";
+        $sql = "UPDATE `role` SET name = '$name', permission = '$permission' WHERE id = $id";
         // echo "<pre>"; print_r($sql);
         // echo "</pre>";
         $post = $this->db->query($sql);
@@ -291,31 +226,7 @@ class RoleModel extends Model
 
         return $post;
     }
-    public function update_st($id, $data): bool
-    {
 
-        // echo $id;
-
-        if (empty($data)) {
-            echo "1";
-            return true;
-        }
-
-     
-       
-        $status = $data['status'];
-        $date = new DateTime();
-        $date = date_default_timezone_set('Asia/Kolkata');
-        $date1 = date('Y-m-d H:i:s');
-        $sql = "UPDATE `role_listings` SET  updated_at = '$date1',status = '$status' WHERE id = $id";
-        // echo "<pre>"; print_r($sql);
-        // echo "</pre>";
-        $post = $this->db->query($sql);
-        if (!$post)
-            throw new Exception('Post does not exist for specified id');
-
-        return $post;
-    }
     public function deletedata($id)
     {
         $post = $this
@@ -324,7 +235,7 @@ class RoleModel extends Model
             ->delete();
 
         if (!$post) 
-            throw new Exception('user does not exist for specified id');
+            throw new Exception('Role does not exist for specified id');
 
         return $post;
     }

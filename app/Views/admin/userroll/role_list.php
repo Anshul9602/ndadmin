@@ -116,481 +116,75 @@
                                                 <label class="custom-control-label" for="checkAll"></label>
                                             </div>
                                         </th>
-                                        <th>Cover</th>
-                                        <th>Name</th>
 
-                                        <th>Description</th>
+                                        <th>Name</th>
+                                        <th>Permission</th>
                                         <th>Status</th>
-                                        <th> Date added</th>
+                                        <th>Date added</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
+                                    <?php
+                                    if ($roles !== null && !empty($roles)): ?>
+                                        <?php foreach ($roles as $index => $user): ?>
+                                            <tr>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                                        <label class="custom-control-label" for="checkAll"></label>
+                                                    </div>
+                                                </td>
 
-                                            Re-order</td>
+                                                <td><?= $user->name ?></td>
 
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
+                                                <td><?= $user->permission ?></td>
+                                                <td>
 
-                                            Re-order</td>
+                                                    <label class="switch">
+                                                        <input type="checkbox" data-id="<?= $user->id ?>"
+                                                            id="switch<?= $user->id ?>" <?= $user->status == '1' ? 'checked' : '' ?> class="status_update" value="<?= $user->status ?>">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                                <td><a href="javascript:void(0);"><strong>
+                                                            <?= $user->created_at ?>
+                                                    </a></strong></td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                                    <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                                    <label class="custom-control-label" for="checkAll"></label>
+                                                </div>
+                                            </td>
 
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
+                                            <td>Re-order</td>
 
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox" checked>
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                <label class="custom-control-label" for="checkAll"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <img width="100" class="img-thumbnail" src="<?php echo base_url('assets/images/card/2.png'); ?>" alt="" />
-                                        </td>
-                                        <td>
-
-                                            Re-order</td>
-
-                                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                                            <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, excepturi!</td>
+                                            <td>
+                                                <label class="switch">
+                                                    <input type="checkbox">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                            <td><a href="javascript:void(0);"><strong>22/10/2022</a></strong></td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -605,29 +199,29 @@
 
 </div>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Remove the 'active' class from the 'des-menu' item
-    const desMenu = document.getElementById("des-menu");
-    const des = document.getElementById("dashboard");
-    if (desMenu) {
-        desMenu.classList.remove("active");
-    }
-    if (des) {
-        des.classList.remove("show");
-        des.classList.remove("active");
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+        // Remove the 'active' class from the 'des-menu' item
+        const desMenu = document.getElementById("des-menu");
+        const des = document.getElementById("dashboard");
+        if (desMenu) {
+            desMenu.classList.remove("active");
+        }
+        if (des) {
+            des.classList.remove("show");
+            des.classList.remove("active");
+        }
 
-    // Add the 'active' class to the 'cat-menu' item
-    const catMenu = document.getElementById("user-menu");
-    const cat = document.getElementById("apps");
-    if (catMenu) {
-        catMenu.classList.add("active");
-    }
-    if (cat) {
-        cat.classList.add("show");
-        cat.classList.add("active");
-    }
-});
+        // Add the 'active' class to the 'cat-menu' item
+        const catMenu = document.getElementById("user-menu");
+        const cat = document.getElementById("apps");
+        if (catMenu) {
+            catMenu.classList.add("active");
+        }
+        if (cat) {
+            cat.classList.add("show");
+            cat.classList.add("active");
+        }
+    });
 </script>
 
 
