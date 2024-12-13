@@ -120,7 +120,7 @@
             <ul class="metismenu tab-nav-menu">
                <li class="nav-label">Settings</li>
                <li>
-                  <a class="has-arrow" href="<?php echo base_url('admin/catalog/category_list/' . $token);?>" aria-expanded="false">
+                  <a class="has-arrow" href="<?php echo base_url('admin/hr_policies/' . $token);?>" aria-expanded="false">
                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <rect x="0" y="0" width="24" height="24"/>

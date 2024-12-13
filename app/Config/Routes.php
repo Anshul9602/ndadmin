@@ -41,17 +41,25 @@ $routes->group('admin', function($routes) {
   $routes->get('candidates/view/getbyid/(:num)', 'Admin\Candidates\Candidates::listCandidate_getByid/$1');
   $routes->get('candidates/view_app/getbyid/(:num)', 'Admin\Candidates\Candidates::listCandidate_app_getByid/$1');
 
-  // Jobs routes
+  // Role routes
   
   $routes->get('roles/(:segment)', 'Admin\Role\Role::listAllRoles/$1');
   $routes->get('role/role_form/(:segment)', 'Admin\Role\Role::listAllRole_Form/$1');
   $routes->get('role/role_form_value/(:num)', 'Admin\Role\Role::listAllRole_Form_value/$1');
   $routes->get('role/role_delete/(:num)', 'Admin\Role\Role::listRole_delete/$1');
   $routes->post('role/role_form/(:segment)', 'Admin\Role\Role::listRole_save/$1');
-  $routes->post('jobs/view/delete/(:num)', 'Admin\Jobs\Jobs::listJob_delete/$1');
-  $routes->post('jobs/job/save', 'Admin\Jobs\Jobs::listJob_save');
-  $routes->post('jobs/view/status/(:num)', 'Admin\Jobs\Jobs::listJob_status/$1');
-  $routes->post('jobs/view/ap_delete/(:num)', 'Admin\Jobs\Jobs::listJobAP_delete/$1');
+
+
+// hr routes
+$routes->get('hr_policies/(:segment)', 'Admin\Hr\Hr::listAllHr_policies/$1');
+$routes->get('hr_policies/hr_form/(:segment)', 'Admin\Hr\Hr::listAllHr_form/$1');
+  $routes->get('hr_policies/view/(:num)/(:segment)', 'Admin\Hr\Hr::listAllHr_policie/$1');
+  $routes->post('hr_policies/view/delete/(:num)', 'Admin\Hr\Hr::listHr_delete/$1');
+  $routes->post('hr_policies/hr_form/(:segment)', 'Admin\Hr\Hr::listHr_save/$1');
+  $routes->post('hr_policies/status_update/(:num)', 'Admin\Hr\Hr::listHr_status/$1');
+  $routes->get('hr_policies/view/getbyid/(:num)', 'Admin\Hr\Hr::listHr_getByid/$1');
+
+ 
    // Hotels routes
    $routes->get('hotels/(:segment)', 'Admin\Hotels\Hotels::listAllCandidates/$1');
    $routes->get('hotels/view/(:num)/(:segment)', 'Admin\Hotels\Hotels::listAllCandidates/$1');

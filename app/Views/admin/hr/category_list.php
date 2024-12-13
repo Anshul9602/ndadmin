@@ -605,29 +605,29 @@
 
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Remove the 'active' class from the 'des-menu' item
-        const desMenu = document.getElementById("des-menu");
-        const des = document.getElementById("dashboard");
-        if (desMenu) {
-            desMenu.classList.remove("active");
-        }
-        if (des) {
-            des.classList.remove("show");
-            des.classList.remove("active");
-        }
+document.addEventListener("DOMContentLoaded", function() {
+    // Remove the 'active' class from the 'des-menu' item
+    const desMenu = document.getElementById("des-menu");
+    const des = document.getElementById("dashboard");
+    if (desMenu) {
+        desMenu.classList.remove("active");
+    }
+    if (des) {
+        des.classList.remove("show");
+        des.classList.remove("active");
+    }
 
-        // Add the 'active' class to the 'cat-menu' item
-        const catMenu = document.getElementById("cat-menu");
-        const cat = document.getElementById("forms");
-        if (catMenu) {
-            catMenu.classList.add("active");
-        }
-        if (cat) {
-            cat.classList.add("show");
-            cat.classList.add("active");
-        }
-    });
+    // Add the 'active' class to the 'cat-menu' item
+    const catMenu = document.getElementById("cat-menu");
+    const cat = document.getElementById("forms");
+    if (catMenu) {
+        catMenu.classList.add("active");
+    }
+    if (cat) {
+        cat.classList.add("show");
+        cat.classList.add("active");
+    }
+});
 </script>
 
 
