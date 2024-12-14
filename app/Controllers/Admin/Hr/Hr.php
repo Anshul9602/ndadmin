@@ -5,7 +5,7 @@ namespace App\Controllers\Admin\Hr;
 use App\Controllers\profile_img;
 use App\Models\ProfileModel;
 use App\Controllers\BaseController;
-use App\Models\CandidatesModel;
+use App\Models\HrModel;
 use App\Models\Job_prefModel;
 use App\Models\JobApplyModel;
 use App\Models\ResumeModel;
@@ -14,11 +14,11 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class Hr extends BaseController
 {
-    protected $candidatesModel;
+    protected $HrModel;
 
     public function __construct()
     {
-        $this->candidatesModel = new CandidatesModel();
+        $this->HrModel = new HrModel();
     }
 
     private function validateToken($token)
@@ -47,13 +47,13 @@ class Hr extends BaseController
             'users' => [] // Initialize 'users' to an empty array
         ];
 
-        $model = new CandidatesModel();
-        $users = $model->getAllUserData();
+        $model = new HrModel();
+        $users = $model->get_data();
 
 
 
 
-        $profile = new ProfileModel();
+      
         $baseUrl = rtrim(base_url(), '/'); // Ensure the base URL does not have a trailing slash
 
         if ($users) {
@@ -61,11 +61,11 @@ class Hr extends BaseController
 
 
 
-                $user_id = $user->user_id;
-                $post1 = $profile->findByUId($user_id);
-
+          
+               
+                $post1 =$user->profile_pic;
                 if ($post1 !== null) {
-                    $resume1 = $post1['image_path'];
+                    $resume1 = $post1;
                     $existingFilePath = FCPATH . $resume1; // FCPATH points to the 'public' directory
 
                     // Debugging
@@ -73,7 +73,7 @@ class Hr extends BaseController
                     // echo "File exists: " . (file_exists($existingFilePath) ? 'Yes' : 'No') . "<br>";
 
                     if (file_exists($existingFilePath)) {
-                        $user_img = $baseUrl . '/' . $resume1;
+                        $user_img = $baseUrl  .'/'. $resume1;
                     } else {
                         $user_img = $baseUrl . '/images/user_img.png';
                     }
@@ -81,27 +81,7 @@ class Hr extends BaseController
                     $user_img = $baseUrl . '/images/user_img.png';
                 }
 
-                $reff = $model->getrefData($user_id);
-
-
-                $userref = $user->ref_id;
-
-                if ($userref !== null) {
-                    $uid = $userref;
-                    $ref = $model->getrefbyidData($uid);
-
-                    if ($ref) {
-                        $user->ref = $ref['profile'];
-                    } else {
-                        $user->ref = '';
-                    }
-
-                    $user->Referral = $reff;
-                } else {
-                    $user->ref = "";
-                    $user->Referral = "";
-                }
-
+               
 
 
                 // Add user image to user object
@@ -143,7 +123,7 @@ class Hr extends BaseController
     {
 
         // echo "yes";
-        $model = new CandidatesModel();
+        $model = new HrModel();
 
         $post = $model->delete_usweb($id);
 
@@ -153,7 +133,7 @@ class Hr extends BaseController
     {
 
         // echo "yes";
-        $model = new CandidatesModel();
+        $model = new HrModel();
 
         $post = $model->update_status_d($id);
 
@@ -164,121 +144,59 @@ class Hr extends BaseController
 
         $data = $this->request->getPost();
 
+//    echo "<pre>";
+
+//                         print_r($data);
+//                         echo "</pre>";
+//                         die();
         $rofile_pic = $this->request->getFile('profile_pic');
-        $resume = $this->request->getFile('resume');
-        $input = [
-            'name' => isset($data['first_name']) ? $data['first_name'] : '',
-            'last_name' => isset($data['last_name']) ? $data['last_name'] : '',
-            'mobile_number' => isset($data['phone_number']) ? $data['phone_number'] : '',
-            'role' => 'Job Seeker',
-            'email' => isset($data['email']) ? $data['email'] : '',
-            'dob' => isset($data['dob']) ? $data['dob'] : '',
-            'gender' => isset($data['gender']) ? $data['gender'] : '',
-            'address' => isset($data['address']) ? $data['address'] : '',
-            'pin_code' => isset($data['pincode']) ? $data['pincode'] : '',
-            'state' => isset($data['state']) ? $data['state'] : '',
-            'city' => '',
-            'country' => 'India',
-
-            'points' => isset($data['points']) ? $data['points'] : '',
-            'profile_img' => isset($rofile_pic) ? $rofile_pic : '',
-
-            'ten_th' => isset($data['ten_th']) ? $data['ten_th'] : 'false',
-            'ten_school' => isset($data['ten_school']) ? $data['ten_school'] : '',
-            'ten_year' => isset($data['ten_year']) ? $data['ten_year'] : '',
-            'to_th' => isset($data['to_th']) ? $data['to_th'] : 'false',
-            'to_th_school' => isset($data['to_th_school']) ? $data['to_th_school'] : '',
-            'to_th_year' => isset($data['to_th_year']) ? $data['to_th_year'] : '',
-            'gra_dip' => isset($data['gra_dip']) ? $data['gra_dip'] : 'false',
-            'gr_university' => isset($data['gr_university']) ? $data['gr_university'] : '',
-            'gr_degree' => isset($data['gr_degree']) ? $data['gr_degree'] : '',
-            'gr_year' => isset($data['gr_year']) ? $data['gr_year'] : '',
-            'post_gra' => isset($data['post_gra']) ? $data['post_gra'] : 'false',
-            'pg_university' => isset($data['pg_university']) ? $data['pg_university'] : '',
-            'pg_degree' => isset($data['pg_degree']) ? $data['pg_degree'] : '',
-            'pg_year' => isset($data['pg_year']) ? $data['pg_year'] : '',
-            'doc' => isset($data['doc']) ? $data['doc'] : 'false',
-
-            'doc_university' => isset($data['doc_university']) ? $data['doc_university'] : '',
-            'doc_degree' => isset($data['doc_degree']) ? $data['doc_degree'] : '',
-            'doc_year' => isset($data['doc_year']) ? $data['doc_year'] : '',
-            'hotel_de' => isset($data['hotel_de']) ? $data['hotel_de'] : 'false',
-            'h_college' => isset($data['h_college']) ? $data['h_college'] : '',
-            'h_year' => isset($data['h_year']) ? $data['h_year'] : '',
-            'job_type' => isset($data['job_type']) ? $data['job_type'] : '',
-            'pref_state' => isset($data['pref_state']) ? $data['pref_state'] : '',
-            'pref_city' => isset($data['pref_city']) ? $data['pref_city'] : '',
-            'start_time' => '',
-            'end_time' =>  '',
-            'sub_dep' =>  '',
-            'salery' => isset($data['salary_range']) ? $data['salary_range'] : '',
-            'department' => isset($data['department']) ? $data['department'] : '',
-            'work_experience' => isset($data['work_experience']) ? $data['work_experience'] : '',
-            'resume' => isset($resume) ? $resume : '',
-        ];
-
-
+        
+       
+        $model = new HrModel();
+        if($data['id']){
+           
+            $id = $data['id'];
+            $input = [
+                'id' => isset($data['id']) ? $data['id'] : '',
+                'name' => isset($data['name']) ? $data['name'] : '',
+                'dis' => isset($data['dis']) ? $data['dis'] : '',
+                'profile_img' => isset($rofile_pic) ? $rofile_pic : '',
+                'status' => isset($data['status']) ? $data['status'] : ''
+            ];
+            $input['prof_img'] =  $this->store_prof_img( $input);
+           
+            $user = $model->update1($id,$input);
+          
+         }else{
+          
+            $input = [
+                'name' => isset($data['name']) ? $data['name'] : '',
+                'dis' => isset($data['dis']) ? $data['dis'] : '',
+                'profile_img' => isset($rofile_pic) ? $rofile_pic : '',
+                'status' => isset($data['status']) ? $data['status'] : ''
+            ];
+            $input['prof_img'] =  $this->store_prof_img($input);
+        
+         
+            $user = $model->save($input);
+           
+         }
         // echo "<pre>"; print_r($input); echo "</pre>";
         // die();
+        $token = session()->get('token');
+    
+            // Pass the role to the view
+         
+        return redirect()->to(base_url('admin/hr_policies/' . $token));
+       
 
-        $model = new CandidatesModel();
-
-        $user = $model->findUserByUserNumber1($input['mobile_number']);
-
-        if ($user == 0) {
-
-            $snew = $model->save($input);
-            // echo "<pre>"; print_r($snew); echo "</pre>";
-
-            $foruid = $model->findUserByUserNumber($input['mobile_number']);
-            // echo "<pre>";
-            // print_r($foruid);
-            // echo "</pre>";
-            $data = $input;
-            $data['user_id'] = $foruid['id'];
-            $required_fields = ['user_id', 'name'];
-            foreach ($required_fields as $field) {
-                if (!isset($data[$field]) || empty($data[$field])) {
-                    return "Error: Missing required field '$field'";
-                }
-            }
-            $user1 = $model->save_profile($data);
-            $userd = $model->getUserData($data['user_id']);
-            $prof_img =  $this->store_prof_img($data['user_id'], $input);
-
-            if ($prof_img == true) {
-                
-            } else {
-                return "Error: profile image not inserted successfully";
-            }
-        } else {
-            // print_r($user);
-
-            $user_id = $user['id'];
-            $data['user_id'] = $user['id'];
-            $data['point'] = $input['points'];
-            $model->update_ref($user_id, $data);
-            $model->update_profile($user_id, $input);
-            $post = $model->getUserData($user_id);
-            // echo "test";
-            $prof_img =  $this->store_prof_img($user_id, $input);
-            if ($prof_img == true) {
-               
-            } else {
-                return "Error: profile image not inserted successfully";
-            }
-            // echo "test";
-            // $user1 = null;
-            $response =
-                $this->response->setStatusCode(200)->setBody('user allrady in list, user updated successfully');
-            return $response;
-        }
+      
 
         return $this->response->setStatusCode(200)->setBody('user saved');
     }
     public function listHr_getByid($id)
     {
-        $user = new CandidatesModel();
+        $user = new HrModel();
         $posts = $user->findUserById($id); // Find all job applications by job ID
 
         if ($posts) {
@@ -289,7 +207,7 @@ class Hr extends BaseController
             $baseUrl = base_url(); // Assuming you have configured the base URL in your CodeIgniter configuration
             $baseUrl = str_replace('/public/', '/', $baseUrl);
             $user_id = $id;
-            $user = new CandidatesModel();
+            $user = new HrModel();
             $udata = $user->getUserData($user_id);
             $profile = new ProfileModel();
             $baseUrl1 = rtrim(base_url(), '/'); // Ensure the base URL does not have a trailing slash
@@ -341,19 +259,21 @@ class Hr extends BaseController
         }
     }
   
-    public function store_prof_img($user_id, $input)
+    public function store_prof_img($input)
     {
         // Get the uploaded file
         $file = $input['profile_img'];
-
+        $user_id = strtok($input['name'], ' ');
+        // echo $user_id;
+        // die();
         // Check if the file is uploaded successfully
         if ($file->isValid() && !$file->hasMoved()) {
             // Move the file to the uploads folder
             $newName = $file->getRandomName();
-            $file->move('uploads/profile/', $newName);
+            $file->move('uploads/Hr/', $newName);
 
             // Save file information to the database
-            $filepath = 'uploads/profile/' . $newName; // Relative path for storage
+            $filepath = 'uploads/Hr/' . $newName; // Relative path for storage
             // You may store other file details like $filename if needed
 
             $model = new ProfileModel();
@@ -369,41 +289,18 @@ class Hr extends BaseController
             }
 
             // Move the file to user's folder if needed
-            $userFolder = FCPATH . 'uploads/profile/' . $user_id . '-img';
+            $userFolder = FCPATH . 'uploads/Hr/' . $user_id . '-img';
             if (!file_exists($userFolder)) {
                 mkdir($userFolder, 0777, true); // Create user's folder if it doesn't exist
             }
 
             $newResumePath = $userFolder . '/' . $newName; // New path with folder
-            rename('uploads/profile/' . $newName, $newResumePath); // Move to user's folder
-            $res_p = '/uploads/profile/' . $user_id . '-img/' . $newName;
+            rename('uploads/Hr/' . $newName, $newResumePath); // Move to user's folder
+            $res_p = 'uploads/Hr/' . $user_id . '-img/' . $newName;
             // Update database with new file path
-            $data = [
-                'user_id' => $user_id,
-                'image_path' => $res_p // Save the file path relative to 'uploads/profile/'
-                // Add more information about the file as needed
-            ];
+        
 
-            if ($existingProfile) {
-                $model->update1($data); // Update existing profile record
-            } else {
-                $model->save($data); // Save new profile record
-            }
-
-            // Prepare data for view
-            $post = $model->findByUId($user_id); // Fetch updated data
-            $baseUrl = base_url(); // Get base URL from CI configuration
-            $baseUrl = rtrim($baseUrl, '/') . '/'; // Ensure base URL ends with '/'
-
-            $imagePath = $post['image_path'];
-
-            if ($imagePath && file_exists($imagePath)) {
-                $data['image_path'] = $baseUrl . $imagePath; // Full URL to uploaded image
-            } else {
-                $data['image_path'] = $baseUrl . 'images/user_img.png'; // Default image if not found
-            }
-
-            return $data; // Return data for further processing or display
+            return $res_p; // Return data for further processing or display
         } else {
             // Handle file upload error
             return "Error uploading file";
